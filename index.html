@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外出登记二维码</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #times {
+            height: 23px;
+            font-size: 20px;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .a {
+            height: 160px;
+            background-color: #f5f5f5;
+            position: relative;
+        }
+
+        .b {
+            position: absolute;
+            top: 20px;
+            left: 150px;
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+        }
+        img{
+            position: absolute;
+            left: -122px;
+            top: -47px;
+        }
+
+        .c {
+            padding: 16px 16px 8px;
+            color: #969799;
+            font-size: 14px;
+            line-height: 16px;
+            background-color: #f5f5f5;
+        }
+
+        .e {
+            padding: 30px 16px 8px;
+            color: #969799;
+            font-size: 14px;
+            line-height: 16px;
+            background-color: #f5f5f5;
+        }
+
+        .d {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            overflow: hidden;
+            color: #323233;
+            font-size: 16px;
+            line-height: 24px;
+            background-color: #fff;
+        }
+
+        .ss {
+            font-size: 14px;
+        }
+
+        .sa {
+            color: #969799;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="times"></div>
+        <div class="a">
+            <div class="b">
+                <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fmmbiz.qpic.cn%2Fmmbiz_gif%2FD7lbAC1PqAXhctG2l3l4ej30Oqjt7IuXic9tnm0yC5KXEMC0Ww4WWfhEHAocueicDFN2SHJiaYl9TKbiaianDIE3rLA%2F0%3Fwx_fmt%3Dgif&refer=http%3A%2F%2Fmmbiz.qpic.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1633524295&t=7df4a3495c3563fe9402ba1a7acae0f8" width="360px" />
+            </div>
+        </div>
+        <div class="c">外出时间</div>
+        <div class="d"><span>离校时间</span><input type="text" class="inp"><span class="asd"></span></div>
+        <div class="d"><span>回校时间</span><input type="text" class="inp1"><span class="ddd"></span></div>
+        <div class="e">学生信息</div>
+        <div class="d ss"><span>姓名</span><span class="ss sa">张</span></div>
+        <div class="d ss"><span>学号</span><span class="ss sa">2112014040</span></div>
+        <div class="d ss"><span>学院</span><span class="ss sa">应用数学学院</span></div>
+        <div class="d ss"><span>专业</span><span class="ss sa">数学</span></div>
+        <div class="d ss"><span>班级</span><span class="ss sa">20数学学硕</span></div>
+    </div>
+</body>
+<script>
+    //得到时间并写入div
+    function getDate() {
+        //获取当前时间
+        var now = new Date();
+        // 获取年份
+        let year = now.getFullYear();
+        // 获取月份
+        let month = now.getMonth(); // 0 ~ 11
+        month++;
+        // 星期几
+        let dayOfWeek = now.getDay(); // 0 周日，6周六   0 ~ 6
+        // 月份的天数
+        let day = now.getDate();
+        // 时
+        let hour = now.getHours();
+        // 分
+        let minute = now.getMinutes();
+        // 秒
+        let second = now.getSeconds();
+
+        // 填充月份没有0的情况
+        month = new String(month).padStart(2, '0');
+        day = new String(day).padStart(2, '0');
+        hour = new String(hour).padStart(2, '0');
+        minute = new String(minute).padStart(2, '0');
+        second = new String(second).padStart(2, '0');
+
+        // 时间格式的拼接
+        let nowStr = `${year}-${month}-${day} ${hour}:${minute}:${second}`
+        //获取div
+        var div1 = document.getElementById("times");
+        //将时间写入div
+        div1.innerText = nowStr;
+    }
+    //使用定时器每秒向div写入当前时间
+    setInterval("getDate()", 1000);
+    document.querySelector('.inp').onchange = function (e) {
+        let span = document.querySelector('.asd');
+        span.innerText = e.currentTarget.value;
+        document.querySelector('.inp').style.display = 'none';
+    }
+    document.querySelector('.inp1').onchange = function (e) {
+        let span = document.querySelector('.ddd');
+        span.innerText = e.currentTarget.value;
+        document.querySelector('.inp1').style.display = 'none';
+    }
+</script>
+
+</html>
